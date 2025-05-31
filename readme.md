@@ -345,7 +345,7 @@ accelerate launch train_controlnet.py \
 - **Storage**: NVMe SSD with 100GB+ free space
 - **OS**: Windows 11
 
-##🎯 Post-Training
+## 🎯 Post-Training
 Using Your Trained Model in ComfyUI
 To use your trained ControlNet model in ComfyUI, follow these steps:
 
