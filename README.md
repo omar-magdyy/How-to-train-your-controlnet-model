@@ -1,1 +1,0 @@
-# How-to-train-your-controlnet-model
