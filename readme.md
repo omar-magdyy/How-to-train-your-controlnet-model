@@ -348,6 +348,7 @@ accelerate launch train_controlnet.py \
 ## 🎯 Post-Training
 Using Your Trained Model in ComfyUI
 To use your trained ControlNet model in ComfyUI, follow these steps:
+(WORK.png)
 
 Locate the Model Files:
 
