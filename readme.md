@@ -345,42 +345,49 @@ accelerate launch train_controlnet.py \
 - **Storage**: NVMe SSD with 100GB+ free space
 - **OS**: Windows 11
 
-## 🎯 Post-Training
+##🎯 Post-Training
+Using Your Trained Model in ComfyUI
+To use your trained ControlNet model in ComfyUI, follow these steps:
 
-### Using Your Trained Model
+Locate the Model Files:
 
-```python
-from diffusers import StableDiffusionControlNetPipeline, ControlNetModel
-import torch
-from PIL import Image
+After training, your model is saved in the control-model/ directory (as specified by --output_dir).
+Ensure you have the model checkpoint files (e.g., pytorch_model.bin, config.json) in this directory.
 
-# Load your trained ControlNet
-controlnet = ControlNetModel.from_pretrained(
-    "./control-model/", 
-    torch_dtype=torch.float16
-)
 
-# Create pipeline
-pipe = StableDiffusionControlNetPipeline.from_pretrained(
-    "runwayml/stable-diffusion-v1-5",
-    controlnet=controlnet,
-    torch_dtype=torch.float16
-)
-pipe.to("cuda")
+Move the Model to ComfyUI:
 
-# Generate image
-control_image = Image.open("control.jpg")
-prompt = "a beautiful landscape"
+Copy the entire control-model/ directory to the ComfyUI models directory, typically located at:ComfyUI/models/controlnet/
 
-image = pipe(
-    prompt,
-    image=control_image,
-    num_inference_steps=20,
-    guidance_scale=7.5,
-).images[0]
 
-image.save("generated.jpg")
-```
+Alternatively, place only the necessary model files (pytorch_model.bin, config.json, etc.) into the controlnet folder.
+
+
+Load the Model in ComfyUI:
+
+Open ComfyUI and navigate to the node-based workflow interface.
+Add a Load ControlNet Model node to your workflow.
+In the node settings, select your model from the controlnet directory (it should appear in the dropdown if placed correctly).
+Connect the ControlNet node to a Stable Diffusion node, ensuring you provide a control image (e.g., Canny edge map, depth map) that matches the type used during training.
+
+Test the Workflow:
+
+Run the workflow in ComfyUI to generate an image.
+The output should be saved automatically (e.g., as generated.jpg) based on your workflow settings.
+
+
+
+Example ComfyUI Workflow JSON
+Below is a sample JSON workflow for using your trained ControlNet model in ComfyUI:
+
+
+Steps to Use the Workflow:
+
+Save the above JSON as controlnet_workflow.json.
+In ComfyUI, click Load and select the controlnet_workflow.json file.
+Ensure the control-model/ directory is in ComfyUI/models/controlnet/.
+Update the image_path in the JSON to point to your control image.
+Run the workflow to generate the output image.
 
 ### Share Your Model
 
