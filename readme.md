@@ -363,40 +363,31 @@ Copy the entire control-model/ directory to the ComfyUI models directory, typica
 Alternatively, place only the necessary model files (pytorch_model.bin, config.json, etc.) into the controlnet folder.
 
 
-Load the Model in ComfyUI:
+### Load the Model in ComfyUI:
 
 Open ComfyUI and navigate to the node-based workflow interface.
 Add a Load ControlNet Model node to your workflow.
 In the node settings, select your model from the controlnet directory (it should appear in the dropdown if placed correctly).
 Connect the ControlNet node to a Stable Diffusion node, ensuring you provide a control image (e.g., Canny edge map, depth map) that matches the type used during training.
 
-Test the Workflow:
+### Test the Workflow:
 
 Run the workflow in ComfyUI to generate an image.
 The output should be saved automatically (e.g., as generated.jpg) based on your workflow settings.
 
 
 
-Example ComfyUI Workflow JSON
+### Example ComfyUI Workflow JSON
 Below is a sample JSON workflow for using your trained ControlNet model in ComfyUI:
 
 
-Steps to Use the Workflow:
+### Steps to Use the Workflow:
 
 Save the above JSON as controlnet_workflow.json.
 In ComfyUI, click Load and select the controlnet_workflow.json file.
 Ensure the control-model/ directory is in ComfyUI/models/controlnet/.
 Update the image_path in the JSON to point to your control image.
 Run the workflow to generate the output image.
-
-### Share Your Model
-
-```python
-from diffusers import ControlNetModel
-
-controlnet = ControlNetModel.from_pretrained("./control-model/")
-controlnet.push_to_hub("your-username/your-controlnet-model")
-```
 
 ## 📊 Performance Tips
 
