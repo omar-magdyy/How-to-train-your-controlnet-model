@@ -348,7 +348,6 @@ accelerate launch train_controlnet.py \
 ## 🎯 Post-Training
 Using Your Trained Model in ComfyUI
 To use your trained ControlNet model in ComfyUI, follow these steps:
-![picture of the workflow](WORK.png)
 
 Locate the Model Files:
 
@@ -372,6 +371,7 @@ In the node settings, select your model from the controlnet directory (it should
 Connect the ControlNet node to a Stable Diffusion node, ensuring you provide a control image (e.g., Canny edge map, depth map) that matches the type used during training.
 
 ### Test the Workflow:
+![picture of the workflow](WORK.png)
 
 Run the workflow in ComfyUI to generate an image.
 The output should be saved automatically (e.g., as generated.jpg) based on your workflow settings.
